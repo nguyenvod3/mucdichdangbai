@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Đăng Bài Tuyển Dụng Sao Cho Đúng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,500;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", "Noto Sans", "Arial", sans-serif;
+  --font-serif: 'Playfair Display', "Cambria", "Georgia", "Times New Roman", serif;
+  --font-mono: "SF Mono", "Consolas", "Menlo", "Courier New", monospace;
+  --ink:#1C1410;
+  --ink-soft:#4A3832;
+  --paper:#FFF9F2;
+  --paper-2:#F7EEE0;
+  --paper-3:#EDE0CA;
+  --red:#D92332;
+  --red-deep:#B31826;
+  --red-bright:#EF3B4A;
+  --red-soft:#FDEDEE;
+  --gold:#D9A441;
+  --gold-deep:#A67A2A;
+  --success:#1E8E56;
+  --success-bright:#30B873;
+  --success-soft:#E6F7EE;
+  --line:rgba(28,20,16,0.10);
+  --line-strong:rgba(28,20,16,0.22);
+  --shadow-sm: 0 2px 6px rgba(28,20,16,0.08), 0 1px 2px rgba(28,20,16,0.04);
+  --shadow-md: 0 8px 22px rgba(28,20,16,0.10), 0 2px 6px rgba(28,20,16,0.05);
+  --shadow-lg: 0 20px 45px rgba(179,24,38,0.18), 0 6px 12px rgba(28,20,16,0.06);
+  --shadow-card: 0 3px 10px rgba(217,35,50,0.10), 0 1px 3px rgba(28,20,16,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{
+  min-height:100vh;font-family:var(--font-sans);color:var(--ink);background:var(--paper);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overscroll-behavior:none;
+}
+body{
+  background:
+    radial-gradient(1200px 800px at 10% -10%, rgba(217,35,50,0.08), transparent 50%),
+    radial-gradient(900px 600px at 100% 100%, rgba(217,164,65,0.10), transparent 50%),
+    linear-gradient(180deg, #FFF9F2 0%, #F7EEE0 100%);
+  position:relative;overflow-x:hidden;min-height:100vh;
+}
+body::before{
+  content:"";position:fixed;inset:0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(28,20,16,0.03) 1px, transparent 0);
+  background-size:22px 22px;pointer-events:none;z-index:0;
+}
+.wrap{max-width:1440px;margin:0 auto;padding:18px 14px 100px;position:relative;z-index:1}
+.masthead{padding-bottom:12px;border-bottom:2px solid var(--ink);margin-bottom:14px}
+.brand h1{
+  font-family:var(--font-serif);font-weight:900;
+  font-size:clamp(22px, 6vw, 44px);line-height:1.05;letter-spacing:-0.02em;color:var(--ink);
+}
+.brand h1 em{font-style:italic;font-weight:500;color:var(--red)}
+.subhead{margin:0 0 16px}
+.lede{
+  font-family:var(--font-serif);font-size:clamp(14px, 3.6vw, 16px);line-height:1.5;
+  color:var(--ink-soft);font-weight:500;
+}
+.lede strong{color:var(--red);font-weight:700;font-family:var(--font-sans)}
+.hud{
+  display:grid;grid-template-columns:repeat(2, 1fr);
+  background:var(--ink);color:#FFF9F2;border-radius:8px;overflow:hidden;
+  box-shadow:var(--shadow-md);margin-bottom:14px;
+}
+.hud-item{
+  padding:10px 14px;
+  border-right:1px solid rgba(255,249,242,0.12);
+  border-bottom:1px solid rgba(255,249,242,0.12);
+  display:flex;flex-direction:column;gap:2px;
+}
+.hud-item:nth-child(2n){border-right:none}
+.hud-item:nth-last-child(-n+2){border-bottom:none}
+.hud-item .label{
+  font-family:var(--font-mono);font-size:9.5px;letter-spacing:0.14em;
+  color:rgba(255,249,242,0.65);text-transform:uppercase;font-weight:500;
+}
+.hud-item .value{
+  font-family:var(--font-serif);font-weight:800;font-size:22px;line-height:1;color:#FFF9F2;
+  display:flex;align-items:baseline;gap:4px;
+}
+.hud-item .value .unit{font-size:12px;color:var(--gold);font-weight:500;font-family:var(--font-sans)}
+.hud-item.accent{background:var(--red)}
+.hud-item.accent .label{color:rgba(255,255,255,0.85)}
+@media (min-width: 720px){
+  .hud{grid-template-columns:repeat(4, 1fr)}
+  .hud-item{border-bottom:none;padding:14px 18px}
+  .hud-item:last-child{border-right:none}
+  .hud-item .value{font-size:24px}
+}
+.confirm-bar{
+  display:flex;flex-direction:column;gap:10px;padding:12px 14px;
+  background:#FFF9F2;border:1px solid var(--line-strong);border-radius:8px;
+  box-shadow:var(--shadow-sm);margin-bottom:14px;
+}
+.confirm-info{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft);line-height:1.4}
+.confirm-info .ci-icon{
+  width:30px;height:30px;background:var(--red-soft);color:var(--red);border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:14px;flex-shrink:0;font-family:var(--font-sans);
+}
+.confirm-info strong{color:var(--ink);font-weight:700}
+.confirm-actions{display:flex;gap:8px;justify-content:stretch}
+.confirm-actions .btn{flex:1}
+@media (min-width: 720px){
+  .confirm-bar{flex-direction:row;align-items:center;justify-content:space-between}
+  .confirm-info{flex:1}
+  .confirm-actions{flex:0 0 auto}
+  .confirm-actions .btn{flex:0 0 auto}
+}
+.btn{
+  font-family:var(--font-sans);font-size:13px;letter-spacing:0.01em;
+  padding:12px 16px;border-radius:6px;border:1.5px solid var(--ink);
+  background:transparent;color:var(--ink);cursor:pointer;
+  transition:all .18s ease;font-weight:600;white-space:nowrap;
+  user-select:none;-webkit-user-select:none;touch-action:manipulation;
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;
+}
+.btn:active{transform:scale(0.97)}
+.btn.primary{
+  background:var(--red);color:#FFF;border-color:var(--red);
+  box-shadow:0 4px 12px rgba(217,35,50,0.25);
+}
+.btn.primary:disabled{
+  background:#C9BEB4;border-color:#C9BEB4;color:#FFF;
+  box-shadow:none;opacity:0.7;cursor:not-allowed;
+}
+.btn.ghost{background:transparent;color:var(--ink-soft);border-color:var(--line-strong)}
+.btn.pulse{animation:btnPulse 2s ease-in-out infinite}
+@keyframes btnPulse{
+  0%,100%{box-shadow:0 4px 12px rgba(217,35,50,0.25)}
+  50%{box-shadow:0 4px 20px rgba(217,35,50,0.5)}
+}
+.board-shell{
+  background:#FFF9F2;border:1px solid var(--line-strong);
+  border-radius:10px;box-shadow:var(--shadow-md);overflow:hidden;
+}
+.board-mobile{display:block}
+.board-desktop{display:none}
+@media (min-width: 980px){
+  .board-mobile{display:none}
+  .board-desktop{display:block}
+}
+
+/* MOBILE ROW-BY-ROW */
+.rowplay-wrap{padding:12px}
+.step-indicator{
+display:flex;align-items:center;gap:6px;padding:10px 12px;
+background:var(–paper-2);border:1px solid var(–line);
+border-radius:8px;margin-bottom:12px;overflow-x:auto;
+}
+.step-dot{
+display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:16px;
+font-family:var(–font-mono);font-size:10px;letter-spacing:0.08em;
+color:var(–ink-soft);font-weight:500;flex-shrink:0;
+border:1px solid transparent;transition:all .25s ease;
+}
+.step-dot .sd-num{
+width:18px;height:18px;border-radius:50%;
+background:var(–paper-3);color:var(–ink-soft);
+display:inline-flex;align-items:center;justify-content:center;
+font-weight:700;font-size:10px;font-family:var(–font-sans);flex-shrink:0;
+}
+.step-dot.active{background:var(–ink);color:#FFF9F2;border-color:var(–ink)}
+.step-dot.active .sd-num{background:var(–red);color:#FFF}
+.step-dot.done{background:var(–success-soft);color:var(–success);border-color:var(–success)}
+.step-dot.done .sd-num{background:var(–success);color:#FFF}
+.step-connector{flex:0 0 14px;height:2px;background:var(–line);border-radius:2px}
+.step-connector.done{background:var(–success)}
+
+.rowplay-question{
+padding:14px 14px 12px;
+background:linear-gradient(135deg, var(–ink) 0%, #2a1f18 100%);
+color:var(–paper);border-radius:10px;margin-bottom:12px;
+border:1px solid var(–line-strong);box-shadow:var(–shadow-sm);
+}
+.rowplay-question .rq-label{
+font-family:var(–font-mono);font-size:10px;letter-spacing:0.18em;
+color:var(–gold);text-transform:uppercase;font-weight:500;
+margin-bottom:6px;display:flex;align-items:center;gap:8px;
+}
+.rowplay-question .rq-label .rq-num{
+width:20px;height:20px;border-radius:50%;background:var(–red);color:#FFF;
+display:inline-flex;align-items:center;justify-content:center;
+font-weight:700;font-size:11px;font-family:var(–font-sans);letter-spacing:0;
+}
+.rowplay-question .rq-title{
+font-family:var(–font-serif);font-weight:800;font-size:22px;
+line-height:1.2;color:var(–paper);margin-bottom:4px;
+}
+.rowplay-question .rq-title em{font-style:italic;font-weight:500;color:var(–red-bright)}
+.rowplay-question .rq-hint{
+font-size:12.5px;line-height:1.45;color:rgba(255,249,242,0.75);
+font-style:italic;font-family:var(–font-serif);
+}
+
+.phase-zones{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.phase-zone{
+background:#FFF9F2;border:1.5px dashed var(–line-strong);
+border-radius:10px;padding:10px;position:relative;
+transition:background .25s ease, border-color .25s ease;
+min-height:154px;display:flex;flex-direction:column;
+}
+.phase-zone.drag-over{background:var(–red-soft);border-color:var(–red);border-style:solid}
+.phase-zone.state-correct{background:var(–success-soft);border-color:var(–success);border-style:solid}
+.phase-zone.state-wrong{background:#FFEEEF;border-color:var(–red);border-style:solid}
+.phase-zone-header{
+display:flex;align-items:baseline;gap:8px;padding:2px 4px 8px;
+border-bottom:1px dashed var(–line);margin-bottom:8px;
+}
+.phase-zone-header .pzh-num{
+width:22px;height:22px;border-radius:50%;background:var(–red);color:#FFF;
+display:inline-flex;align-items:center;justify-content:center;
+font-weight:700;font-size:11px;font-family:var(–font-sans);
+flex-shrink:0;transform:translateY(3px);
+}
+.phase-zone.state-correct .phase-zone-header .pzh-num{background:var(–success)}
+.phase-zone-header .pzh-text{flex:1;min-width:0}
+.phase-zone-header .pzh-label{
+font-family:var(–font-mono);font-size:9.5px;letter-spacing:0.14em;
+color:var(–ink-soft);text-transform:uppercase;font-weight:500;
+}
+.phase-zone-header .pzh-title{
+font-family:var(–font-serif);font-weight:700;font-size:15px;
+line-height:1.2;color:var(–ink);
+}
+.phase-zone-header .pzh-title em{font-style:italic;color:var(–red);font-weight:600}
+.phase-zone-body{flex:1;display:flex}
+.phase-zone.empty .phase-zone-body{
+align-items:center;justify-content:center;min-height:70px;
+color:var(–ink-soft);font-size:12px;font-style:italic;opacity:0.55;
+}
+.phase-zone.empty .phase-zone-body::before{content:“Thả thẻ vào đây”}
+
+.staging-wrap{margin-bottom:14px}
+.staging-label{
+font-family:var(–font-mono);font-size:10px;letter-spacing:0.16em;
+color:var(–ink-soft);text-transform:uppercase;margin-bottom:8px;
+font-weight:500;display:flex;align-items:center;gap:8px;
+}
+.staging-label .sl-count{
+background:var(–red);color:#FFF;padding:2px 7px;border-radius:10px;
+font-size:10px;font-weight:700;font-family:var(–font-sans);letter-spacing:0;
+}
+.staging{
+display:grid;grid-template-columns:1fr;gap:8px;padding:10px;
+background:var(–paper-2);border:1px dashed var(–line-strong);
+border-radius:10px;min-height:60px;
+}
+.staging.drag-over{background:var(–red-soft);border-color:var(–red);border-style:solid}
+.staging.empty{
+min-height:54px;display:flex;align-items:center;justify-content:center;
+color:var(–ink-soft);font-size:12px;font-style:italic;opacity:0.55;
+}
+.staging.empty::before{content:“Đã kéo hết các thẻ vào giai đoạn”}
+
+.recap-wrap{margin-bottom:14px}
+.recap-row{
+display:flex;align-items:center;gap:10px;padding:8px 12px;
+background:var(–success-soft);border:1px solid var(–success);
+border-radius:8px;margin-bottom:6px;font-size:12px;
+}
+.recap-row .rc-icon{
+width:22px;height:22px;border-radius:50%;background:var(–success);color:#FFF;
+display:inline-flex;align-items:center;justify-content:center;
+font-weight:700;font-size:11px;flex-shrink:0;
+}
+.recap-row .rc-text{flex:1;color:var(–ink)}
+.recap-row .rc-text strong{font-weight:700;color:var(–ink)}
+.recap-row .rc-meta{
+font-family:var(–font-mono);font-size:10px;letter-spacing:0.05em;
+color:var(–success);font-weight:600;
+}
+
+/* DESKTOP MATRIX */
+.board-header{
+display:grid;grid-template-columns: 150px repeat(3, minmax(260px, 1fr));
+background:var(–paper-2);border-bottom:1px solid var(–line-strong);
+}
+.board-header > div{padding:14px 18px;border-right:1px solid var(–line)}
+.board-header > div:last-child{border-right:none}
+.col-label{
+font-family:var(–font-mono);font-size:10px;letter-spacing:0.16em;
+color:var(–ink-soft);text-transform:uppercase;margin-bottom:5px;
+display:flex;align-items:center;gap:8px;font-weight:500;
+}
+.col-label .num{
+width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;
+background:var(–red);color:#FFF;font-size:10px;font-weight:700;
+border-radius:50%;font-family:var(–font-sans);
+}
+.col-title{font-family:var(–font-serif);font-weight:700;font-size:19px;line-height:1.15;color:var(–ink)}
+.col-title em{font-style:italic;color:var(–red);font-weight:600}
+.phase-0 .col-title{
+font-family:var(–font-mono);font-size:12px;letter-spacing:0.18em;
+text-transform:uppercase;color:var(–ink-soft);font-weight:600;
+}
+.board-grid{
+display:grid;grid-template-columns: 150px repeat(3, minmax(260px, 1fr));
+grid-auto-rows: minmax(145px, auto);
+}
+.row-label{
+background:var(–paper-2);padding:14px 18px;
+display:flex;flex-direction:column;justify-content:center;
+border-right:1px solid var(–line-strong);border-bottom:1px solid var(–line);gap:3px;
+}
+.row-label .r-num{
+font-family:var(–font-mono);font-size:10px;letter-spacing:0.14em;
+color:var(–red);font-weight:600;
+}
+.row-label .r-title{
+font-family:var(–font-serif);font-weight:700;font-size:17px;
+line-height:1.2;color:var(–ink);
+}
+.row-label .r-sub{
+font-size:11px;color:var(–ink-soft);line-height:1.3;margin-top:1px;
+font-style:italic;font-family:var(–font-serif);
+}
+.drop-zone{
+background:#FFF9F2;border-right:1px solid var(–line);
+border-bottom:1px solid var(–line);padding:8px;position:relative;
+transition:background .2s ease;min-height:140px;display:flex;align-items:stretch;
+}
+.board-desktop .drop-zone:last-of-type{border-right:none}
+.drop-zone.drag-over{background:var(–red-soft)}
+.drop-zone.state-correct{background:var(–success-soft)}
+.drop-zone.state-wrong{background:#FFEEEF}
+
+/* CARDS */
+.card{
+background:#FFF9F2;border:1.5px solid var(–line-strong);
+border-radius:6px;padding:10px 12px;cursor:grab;
+box-shadow:var(–shadow-card);
+transition:transform .18s ease, box-shadow .18s ease, border-color .25s ease, opacity .18s;
+position:relative;user-select:none;-webkit-user-select:none;
+touch-action:pan-y;width:100%;
+display:flex;flex-direction:column;gap:4px;font-family:var(–font-sans);
+}
+.card:active{cursor:grabbing}
+.card.dragging{opacity:0.35;cursor:grabbing}
+.card.press-hold{transform:scale(1.025);box-shadow:var(–shadow-lg);border-color:var(–red)}
+.card.in-slot{animation:slotIn 0.3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes slotIn{
+0%{transform:scale(0.85);opacity:0.4}
+60%{transform:scale(1.04)}
+100%{transform:scale(1);opacity:1}
+}
+.c-tag{
+font-family:var(–font-mono);font-size:9.5px;letter-spacing:0.16em;
+color:var(–red);text-transform:uppercase;font-weight:600;margin-bottom:2px;
+}
+.c-body{font-size:13px;line-height:1.4;color:var(–ink)}
+.c-body strong{display:block;color:var(–ink);font-weight:700;margin-bottom:2px}
+.c-body ul{list-style:none;padding:0;margin:2px 0 0}
+.c-body li{
+font-size:12px;line-height:1.4;color:var(–ink-soft);
+padding-left:10px;position:relative;margin-bottom:1px;
+}
+.c-body li::before{
+content:”·”;position:absolute;left:2px;top:-2px;
+color:var(–red);font-weight:700;font-size:16px;
+}
+.format-pills, .platform-grid{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.format-pill, .platform-pill{
+font-size:10.5px;padding:3px 8px;background:var(–paper-3);
+color:var(–ink-soft);border-radius:10px;font-weight:500;
+}
+.format-pill.duration{background:var(–gold);color:#FFF}
+.platform-pill{display:inline-flex;align-items:center;gap:4px;background:var(–paper-2)}
+.platform-pill .dot{width:6px;height:6px;border-radius:50%;background:var(–red)}
+.platform-pill[data-p=“tiktok”] .dot{background:#000}
+.platform-pill[data-p=“fb”] .dot{background:#1877F2}
+.platform-pill[data-p=“fbg”] .dot{background:#4267B2}
+.platform-pill[data-p=“yt”] .dot{background:#FF0000}
+.platform-pill[data-p=“li”] .dot{background:#0A66C2}
+.platform-pill[data-p=“zalo”] .dot{background:#0068FF}
+.card.marked-correct{
+border-color:var(–success);border-width:2px;background:var(–success-soft);
+cursor:default;
+box-shadow:0 0 0 2px rgba(30,142,86,0.18), 0 3px 10px rgba(30,142,86,0.15);
+}
+.card.marked-correct::after{
+content:“✓”;position:absolute;top:6px;right:8px;
+width:18px;height:18px;background:var(–success);color:#FFF;
+border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+font-size:11px;font-weight:700;
+}
+.card.marked-wrong{
+border-color:var(–red);border-width:2px;background:#FFEEEF;
+animation:wrongShake 0.4s ease;
+box-shadow:0 0 0 2px rgba(217,35,50,0.15), 0 3px 10px rgba(217,35,50,0.18);
+}
+@keyframes wrongShake{
+0%,100%{transform:translateX(0)}
+25%{transform:translateX(-3px)}
+75%{transform:translateX(3px)}
+}
+.drag-ghost{
+position:fixed;pointer-events:none;z-index:999;opacity:0.92;
+box-shadow:var(–shadow-lg);transform:rotate(-1deg) scale(1.03);
+border-color:var(–red) !important;
+}
+footer{
+margin-top:28px;padding-top:14px;border-top:1px solid var(–line);
+display:flex;justify-content:space-between;align-items:center;
+font-size:11px;color:var(–ink-soft);font-family:var(–font-mono);letter-spacing:0.08em;
+}
+.g-mark{font-weight:700;color:var(–red)}
+
+/* MODALS */
+.overlay{
+position:fixed;inset:0;background:rgba(28,20,16,0.55);
+backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+display:flex;align-items:center;justify-content:center;
+padding:20px;z-index:100;opacity:0;pointer-events:none;
+transition:opacity .3s ease;
+}
+.overlay.show{opacity:1;pointer-events:auto}
+.modal{
+background:var(–paper);border-radius:12px;max-width:480px;width:100%;
+max-height:92vh;overflow-y:auto;box-shadow:var(–shadow-lg);
+border:1px solid var(–line-strong);
+animation:modalIn 0.35s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modalIn{
+from{transform:translateY(20px) scale(0.95);opacity:0}
+to{transform:translateY(0) scale(1);opacity:1}
+}
+.modal-header{
+background:var(–ink);color:var(–paper);padding:22px 20px 20px;text-align:center;
+border-radius:12px 12px 0 0;border-bottom:3px solid var(–red);
+}
+.modal-header .eyebrow{
+font-family:var(–font-mono);font-size:10px;letter-spacing:0.22em;
+color:var(–gold);text-transform:uppercase;margin-bottom:10px;font-weight:500;
+}
+.modal-header h2{
+font-family:var(–font-serif);font-weight:800;
+font-size:24px;line-height:1.15;color:var(–paper);
+}
+.modal-header h2 em{font-style:italic;font-weight:500;color:var(–red-bright)}
+.modal-header .tag{
+font-family:var(–font-mono);font-size:11px;letter-spacing:0.14em;
+color:var(–gold);text-transform:uppercase;margin-top:8px;font-weight:500;
+}
+.modal-header .crown{font-size:40px;margin-bottom:6px}
+.modal-body{padding:20px}
+.rules{list-style:none;padding:0;margin:0 0 18px}
+.rules li{
+display:flex;gap:12px;padding:10px 0;
+border-bottom:1px dashed var(–line);align-items:flex-start;
+}
+.rules li:last-child{border-bottom:none}
+.rules .rn{
+flex:0 0 26px;width:26px;height:26px;background:var(–red);color:#FFF;
+border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+font-weight:700;font-size:13px;font-family:var(–font-sans);
+}
+.rules div{flex:1;font-size:13px;line-height:1.5;color:var(–ink-soft)}
+.rules strong{display:block;color:var(–ink);font-weight:700;font-size:14px;margin-bottom:2px}
+.rules em{font-style:italic;color:var(–red);font-weight:500}
+.feedback-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.fb-card{padding:12px;border-radius:8px;display:flex;gap:10px;align-items:center}
+.fb-card.good{background:var(–success-soft);border:1px solid var(–success)}
+.fb-card.bad{background:var(–red-soft);border:1px solid var(–red)}
+.fb-icon{
+width:30px;height:30px;border-radius:50%;
+display:inline-flex;align-items:center;justify-content:center;
+font-weight:700;font-size:15px;flex-shrink:0;
+}
+.fb-card.good .fb-icon{background:var(–success);color:#FFF}
+.fb-card.bad .fb-icon{background:var(–red);color:#FFF}
+.fb-num{font-family:var(–font-serif);font-weight:800;font-size:20px;color:var(–ink);line-height:1}
+.fb-text{font-size:11px;color:var(–ink-soft);line-height:1.3;margin-top:2px}
+.modal-msg{
+font-size:13px;line-height:1.55;color:var(–ink-soft);
+padding:12px;background:var(–paper-2);border-radius:8px;margin-bottom:14px;
+}
+.result-stats{display:grid;grid-template-columns:repeat(3, 1fr);gap:8px;margin-bottom:14px}
+.r-stat{
+padding:12px 8px;background:var(–paper-2);border-radius:8px;
+text-align:center;border:1px solid var(–line);
+}
+.rs-label{
+font-family:var(–font-mono);font-size:9px;letter-spacing:0.12em;
+color:var(–ink-soft);text-transform:uppercase;margin-bottom:4px;font-weight:500;
+}
+.rs-value{font-family:var(–font-serif);font-weight:800;font-size:18px;color:var(–ink);line-height:1}
+.rank-display{
+padding:14px;background:var(–ink);color:var(–paper);
+border-radius:8px;text-align:center;margin-bottom:14px;border:2px solid var(–red);
+}
+.rd-label{
+font-family:var(–font-mono);font-size:10px;letter-spacing:0.2em;
+color:var(–gold);margin-bottom:5px;font-weight:500;
+}
+.rd-value{font-family:var(–font-serif);font-weight:800;font-size:22px;color:var(–paper)}
+.modal-actions{display:flex;gap:8px;flex-direction:column}
+.modal-actions .btn{width:100%}
+@media (min-width: 560px){
+.modal-actions{flex-direction:row}
+.modal-actions .btn{flex:1}
+}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
+.dragging-active, .dragging-active *{user-select:none !important;-webkit-user-select:none !important}
+@supports (-webkit-touch-callout: none){.card{-webkit-touch-callout:none}}
+.rowplay-fade{animation:rowFade 0.4s ease}
+@keyframes rowFade{
+from{opacity:0;transform:translateY(8px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+</style>
+</head>
+
+<body>
+<div class="overlay show intro" id="intro">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="eyebrow">&#9670; Training Game &middot; L&amp;D</div>
+      <h2>Đăng bài tuyển dụng<br/><em>sao cho đúng</em></h2>
+    </div>
+    <div class="modal-body">
+      <ul class="rules">
+        <li>
+          <span class="rn">1</span>
+          <div>
+            <strong>Tình huống</strong>
+            Bạn sẽ lần lượt đi qua <em>5 tầng</em> của phễu tuyển dụng: Mục tiêu &rarr; Thông điệp &rarr; Nội dung &rarr; Định dạng &rarr; Nền tảng.
+          </div>
+        </li>
+        <li>
+          <span class="rn">2</span>
+          <div>
+            <strong>Cách chơi</strong>
+            Mỗi tầng có <em>3 thẻ</em>. Nhiệm vụ: kéo mỗi thẻ vào đúng <strong style="color:var(--red)">giai đoạn của phễu</strong> (Thu hút / Nhận diện / Chuyển đổi). Xếp đủ 3 thẻ rồi bấm <strong style="color:var(--red)">XÁC NHẬN</strong>.
+          </div>
+        </li>
+        <li>
+          <span class="rn">3</span>
+          <div>
+            <strong>Phản hồi</strong>
+            Đúng cả 3 &rarr; <em>tầng mới mở ra</em>. Nếu còn sai, các thẻ sai sẽ quay lại khay để bạn thử lại.
+          </div>
+        </li>
+        <li>
+          <span class="rn">4</span>
+          <div>
+            <strong>Thao tác</strong>
+            Trên điện thoại: <em>nhấn giữ</em> thẻ ~0.2 giây rồi kéo. Vuốt thường để cuộn trang.
+          </div>
+        </li>
+      </ul>
+      <button class="btn primary" style="width:100%;padding:14px;font-size:14px" onclick="startGame()">Bắt đầu trò chơi &#9658;</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="brand">
+      <h1>Đăng bài tuyển dụng<br/><em>sao cho đúng</em></h1>
+    </div>
+  </header>
+
+  <div class="subhead">
+    <p class="lede">
+      Mỗi giai đoạn trong phễu tuyển dụng đòi hỏi <strong>mục tiêu, thông điệp, nội dung, định dạng và nền tảng</strong>
+      khác nhau.
+    </p>
+  </div>
+
+  <div class="hud">
+    <div class="hud-item">
+      <div class="label">&#10711; Thời gian</div>
+      <div class="value"><span id="timer">00:00</span></div>
+    </div>
+    <div class="hud-item" id="hud-progress">
+      <div class="label">&#10003; Tầng hoàn tất</div>
+      <div class="value"><span id="locked">0</span><span class="unit">/ 5</span></div>
+    </div>
+    <div class="hud-item">
+      <div class="label">&#8596; Đổi chỗ</div>
+      <div class="value"><span id="swaps">0</span></div>
+    </div>
+    <div class="hud-item accent">
+      <div class="label">&#8635; Xác nhận</div>
+      <div class="value"><span id="attempts">0</span></div>
+    </div>
+  </div>
+
+  <div class="confirm-bar">
+    <div class="confirm-info">
+      <div class="ci-icon" id="status-icon">&#8596;</div>
+      <div id="status-text">
+        <strong>Kéo thẻ từ khay vào đúng giai đoạn của phễu.</strong> Khi đủ 3 thẻ, nhấn <strong style="color:var(--red)">XÁC NHẬN</strong>.
+      </div>
+    </div>
+    <div class="confirm-actions">
+      <button class="btn ghost" onclick="resetGame()"><span>&#10226;</span>Chơi lại</button>
+      <button class="btn primary pulse" id="confirm-btn" onclick="confirmAnswers()"><span>&#10003;</span>Xác nhận</button>
+    </div>
+  </div>
+
+  <div class="board-shell">
+    <div class="board-mobile">
+      <div class="rowplay-wrap" id="rowplay">
+        <div class="step-indicator" id="step-indicator"></div>
+        <div class="recap-wrap" id="recap"></div>
+        <div class="rowplay-question" id="rowplay-question"></div>
+        <div class="phase-zones" id="phase-zones"></div>
+        <div class="staging-wrap" id="staging-wrap">
+          <div class="staging-label">
+            <span>Thẻ chưa xếp</span>
+            <span class="sl-count" id="staging-count">0</span>
+          </div>
+          <div class="staging empty" id="staging"></div>
+        </div>
+      </div>
+    </div>
+
+```
+<div class="board-desktop">
+  <div class="board-header">
+    <div class="phase-0"><div class="col-title">Ma trận</div></div>
+    <div>
+      <div class="col-label"><span class="num">1</span> Giai đoạn</div>
+      <div class="col-title">Thu hút <em>sự quan tâm</em></div>
+    </div>
+    <div>
+      <div class="col-label"><span class="num">2</span> Giai đoạn</div>
+      <div class="col-title">Nhận diện <em>nhu cầu</em></div>
+    </div>
+    <div>
+      <div class="col-label"><span class="num">3</span> Giai đoạn</div>
+      <div class="col-title">Chuyển đổi <em>ứng viên</em></div>
+    </div>
+  </div>
+  <div class="board-grid" id="board-desktop"></div>
+</div>
+```
+
+  </div>
+
+  <footer>
+    <div>Training Module &middot; D&amp;D Agency &middot; 2026</div>
+    <div class="g-mark">GENERALI</div>
+  </footer>
+</div>
+
+<div class="overlay" id="feedback">
+  <div class="modal feedback">
+    <div class="modal-header">
+      <h2 id="fb-title">Cùng xem lại nhé<br/><em>Gần đúng rồi</em></h2>
+      <div class="tag">Lượt xác nhận <span id="fb-attempt">1</span></div>
+    </div>
+    <div class="modal-body">
+      <div class="feedback-stats">
+        <div class="fb-card good">
+          <div class="fb-icon">&#10003;</div>
+          <div>
+            <div class="fb-num" id="fb-correct">0</div>
+            <div class="fb-text">thẻ đúng</div>
+          </div>
+        </div>
+        <div class="fb-card bad">
+          <div class="fb-icon">&#10005;</div>
+          <div>
+            <div class="fb-num" id="fb-wrong">0</div>
+            <div class="fb-text">thẻ sai</div>
+          </div>
+        </div>
+      </div>
+      <p class="modal-msg">
+        Các thẻ sai sẽ trở về khay. Kéo lại vào đúng giai đoạn rồi nhấn <strong style="color:var(--red);font-style:normal">XÁC NHẬN</strong> lần nữa.
+      </p>
+      <div class="modal-actions">
+        <button class="btn primary" onclick="closeFeedback()"><span>&#8635;</span>Tiếp tục chỉnh sửa</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="result">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="crown">&#127942;</div>
+      <h2>Chúc mừng!<br/><em>Bạn đã chinh phục phễu</em></h2>
+      <div class="tag">Hoàn thành đủ 5 tầng của funnel</div>
+    </div>
+    <div class="modal-body">
+      <div class="result-stats">
+        <div class="r-stat">
+          <div class="rs-label">Thời gian</div>
+          <div class="rs-value" id="r-time">--:--</div>
+        </div>
+        <div class="r-stat">
+          <div class="rs-label">Xác nhận</div>
+          <div class="rs-value" id="r-attempts">0</div>
+        </div>
+        <div class="r-stat">
+          <div class="rs-label">Điểm</div>
+          <div class="rs-value" id="r-score">0</div>
+        </div>
+      </div>
+      <div class="rank-display">
+        <div class="rd-label">&#9670; Xếp hạng của bạn</div>
+        <div class="rd-value" id="r-rank">&mdash;</div>
+      </div>
+      <p class="modal-msg" id="r-msg">&mdash;</p>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeResult()">Xem lại bảng</button>
+        <button class="btn primary" onclick="resetGame()"><span>&#8635;</span>Thử lại nhanh hơn</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<canvas class="confetti" id="confetti"></canvas>
+
+<script>
+const CARDS = [
+  {id:'1a', row:1, col:'a', html:`
+    <div class="c-tag">Mục tiêu</div>
+    <div class="c-body">Khiến người xem <strong>ngừng lại</strong> &amp; muốn tìm hiểu thêm</div>
+  `},
+  {id:'1b', row:1, col:'b', html:`
+    <div class="c-tag">Mục tiêu</div>
+    <div class="c-body"><strong>Nhận ra nhu cầu</strong> phát triển sự nghiệp, thúc đẩy mong muốn tìm hiểu cơ hội mới</div>
+  `},
+  {id:'1c', row:1, col:'c', html:`
+    <div class="c-tag">Mục tiêu</div>
+    <div class="c-body"><strong>Thúc đẩy hành động</strong> inbox, đăng ký tham dự, hẹn gặp&hellip;</div>
+  `},
+  {id:'2a', row:2, col:'a', html:`
+    <div class="c-tag">Thông điệp</div>
+    <div class="c-body">
+      <strong>Tò mò &amp; phá định kiến</strong>
+      <ul>
+        <li>"Một ngày TVBH cùng với mình"</li>
+        <li>"TVBH: lừa đảo hay bảo vệ?"</li>
+      </ul>
+    </div>
+  `},
+  {id:'2b', row:2, col:'b', html:`
+    <div class="c-tag">Thông điệp</div>
+    <div class="c-body">
+      <strong>Gợi mở cơ hội nghề</strong>
+      <ul>
+        <li>"Bạn có đồng cảm với mình?"</li>
+        <li>"Thay đổi: Thời điểm tốt nhất?"</li>
+      </ul>
+    </div>
+  `},
+  {id:'2c', row:2, col:'c', html:`
+    <div class="c-tag">Thông điệp</div>
+    <div class="c-body">
+      <strong>Câu chuyện thực tế + CTA</strong>
+      <ul>
+        <li>"Bình luận 'OK' mình gửi thông tin"</li>
+        <li>"Inbox để tìm hiểu công việc này"</li>
+      </ul>
+    </div>
+  `},
+  {id:'3a', row:3, col:'a', html:`
+    <div class="c-tag">Nội dung</div>
+    <div class="c-body">
+      <strong>Chân thực &ndash; Gây tò mò</strong>
+      <ul>
+        <li>Behind the scenes sân khấu vinh danh</li>
+        <li>Thu nhập TVBH cao đến đâu?</li>
+        <li>3 điều tôi ước mình biết sớm hơn</li>
+      </ul>
+    </div>
+  `},
+  {id:'3b', row:3, col:'b', html:`
+    <div class="c-tag">Nội dung</div>
+    <div class="c-body">
+      <strong>Chuyên môn, số liệu</strong>
+      <ul>
+        <li>Quản lý hay Chuyên gia hoạch định?</li>
+        <li>Lương cứng hay thu nhập tương xứng?</li>
+        <li>Trắc nghiệm / Khảo sát nghề</li>
+      </ul>
+    </div>
+  `},
+  {id:'3c', row:3, col:'c', html:`
+    <div class="c-tag">Nội dung</div>
+    <div class="c-body">
+      <strong>Câu chuyện + CTA rõ ràng</strong>
+      <ul>
+        <li>Video "Lý do Gen Z chọn TVBH" &rarr; đăng ký buổi chia sẻ</li>
+        <li>Báo cáo thu nhập 2025 &rarr; inbox nhận báo cáo</li>
+      </ul>
+    </div>
+  `},
+  {id:'4a', row:4, col:'a', html:`
+    <div class="c-tag">Định dạng</div>
+    <div class="c-body"><strong>Ngắn &amp; bắt mắt</strong></div>
+    <div class="format-pills">
+      <span class="format-pill">Video ngắn</span>
+      <span class="format-pill">Ảnh cuộn</span>
+      <span class="format-pill duration">30&ndash;90 giây</span>
+    </div>
+  `},
+  {id:'4b', row:4, col:'b', html:`
+    <div class="c-tag">Định dạng</div>
+    <div class="c-body"><strong>Chuyên sâu &amp; tương tác</strong></div>
+    <div class="format-pills">
+      <span class="format-pill">Bài viết dài</span>
+      <span class="format-pill">Series video</span>
+      <span class="format-pill">Video dài</span>
+      <span class="format-pill">Khảo sát</span>
+      <span class="format-pill">Trắc nghiệm</span>
+      <span class="format-pill duration">5&ndash;15 phút</span>
+    </div>
+  `},
+  {id:'4c', row:4, col:'c', html:`
+    <div class="c-tag">Định dạng</div>
+    <div class="c-body"><strong>Kèm lời kêu gọi hành động</strong></div>
+    <div class="format-pills">
+      <span class="format-pill">Ảnh cuộn</span>
+      <span class="format-pill">Video ngắn</span>
+      <span class="format-pill">Báo cáo</span>
+      <span class="format-pill duration">Có CTA</span>
+    </div>
+  `},
+  {id:'5a', row:5, col:'a', html:`
+    <div class="c-tag">Nền tảng</div>
+    <div class="c-body"><strong>Kênh lan toả mạnh</strong></div>
+    <div class="platform-grid">
+      <span class="platform-pill" data-p="tiktok"><span class="dot"></span>TikTok</span>
+      <span class="platform-pill" data-p="fb"><span class="dot"></span>FB Reels</span>
+      <span class="platform-pill" data-p="yt"><span class="dot"></span>YT Shorts</span>
+      <span class="platform-pill" data-p="zalo"><span class="dot"></span>Zalo Nhật ký</span>
+    </div>
+  `},
+  {id:'5b', row:5, col:'b', html:`
+    <div class="c-tag">Nền tảng</div>
+    <div class="c-body"><strong>Kênh chuyên nghiệp</strong></div>
+    <div class="platform-grid">
+      <span class="platform-pill" data-p="li"><span class="dot"></span>LinkedIn</span>
+      <span class="platform-pill" data-p="yt"><span class="dot"></span>YouTube</span>
+      <span class="platform-pill" data-p="fbg"><span class="dot"></span>Nhóm FB</span>
+      <span class="platform-pill" data-p="zalo"><span class="dot"></span>Zalo Nhật ký</span>
+    </div>
+  `},
+  {id:'5c', row:5, col:'c', html:`
+    <div class="c-tag">Nền tảng</div>
+    <div class="c-body"><strong>Kênh chuyển đổi</strong></div>
+    <div class="platform-grid">
+      <span class="platform-pill" data-p="li"><span class="dot"></span>LinkedIn</span>
+      <span class="platform-pill" data-p="tiktok"><span class="dot"></span>TikTok</span>
+      <span class="platform-pill" data-p="fbg"><span class="dot"></span>Nhóm FB</span>
+      <span class="platform-pill" data-p="zalo"><span class="dot"></span>Zalo Nhật ký</span>
+    </div>
+  `},
+];
+
+const ROWS = [
+  {n:1, title:'Mục tiêu', sub:'Goal per phase', hint:'Mỗi giai đoạn của phễu nhắm tới mục tiêu nào?'},
+  {n:2, title:'Thông điệp', sub:'Core message', hint:'Thông điệp cốt lõi nào phù hợp với từng giai đoạn?'},
+  {n:3, title:'Nội dung', sub:'Content ideas', hint:'Kiểu nội dung nào nên xuất hiện ở từng giai đoạn?'},
+  {n:4, title:'Định dạng', sub:'Format &amp; length', hint:'Định dạng &amp; độ dài nào hiệu quả cho từng giai đoạn?'},
+  {n:5, title:'Nền tảng', sub:'Platforms', hint:'Nền tảng nào nên được ưu tiên ở từng giai đoạn?'},
+];
+const COLS = ['a','b','c'];
+const COL_META = {
+  a: {num:1, title:'Thu hút <em>sự quan tâm</em>'},
+  b: {num:2, title:'Nhận diện <em>nhu cầu</em>'},
+  c: {num:3, title:'Chuyển đổi <em>ứng viên</em>'},
+};
+const ALL_SLOTS = ROWS.flatMap(r => COLS.map(c => `${r.n}${c}`));
+
+function isMobileView(){ return window.innerWidth < 980; }
+
+let state = {
+  mode: 'mobile',
+  currentRow: 1,
+  rowPlacements: {},
+  rowStaging: [],
+  completedRows: [],
+  rowAttemptCount: 0,
+  placed: {},
+  locked: new Set(),
+  attempts: 0,
+  swaps: 0,
+  startTime: null,
+  timerInterval: null,
+  elapsed: 0,
+  finished: false,
+};
+
+function shuffle(arr){
+  const a = [...arr];
+  for(let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+</script>
+
+<script>
+function buildBoard(){
+  state.mode = isMobileView() ? 'mobile' : 'desktop';
+  if(state.mode === 'mobile') buildMobileRow();
+  else buildDesktopMatrix();
+  if(!state.startTime) startTimer();
+  updateHUD();
+  refreshStatus();
+}
+
+function buildMobileRow(){
+  const wrap = document.getElementById('rowplay');
+  wrap.classList.remove('rowplay-fade');
+  void wrap.offsetWidth;
+  wrap.classList.add('rowplay-fade');
+
+  const indicator = document.getElementById('step-indicator');
+  indicator.innerHTML = '';
+  ROWS.forEach((r, idx) => {
+    const dot = document.createElement('div');
+    dot.className = 'step-dot';
+    const isDone = state.completedRows.some(c => c.rowN === r.n);
+    if(isDone) dot.classList.add('done');
+    if(r.n === state.currentRow && !state.finished) dot.classList.add('active');
+    dot.innerHTML = `<span class="sd-num">${r.n}</span><span>${r.title}</span>`;
+    indicator.appendChild(dot);
+    if(idx < ROWS.length - 1){
+      const line = document.createElement('div');
+      line.className = 'step-connector';
+      if(isDone) line.classList.add('done');
+      indicator.appendChild(line);
+    }
+  });
+
+  const recap = document.getElementById('recap');
+  recap.innerHTML = '';
+  state.completedRows.forEach(c => {
+    const rowData = ROWS.find(r => r.n === c.rowN);
+    const div = document.createElement('div');
+    div.className = 'recap-row';
+    const attemptText = c.attempts === 1 ? '1 lần' : `${c.attempts} lần`;
+    div.innerHTML = `
+      <span class="rc-icon">&#10003;</span>
+      <span class="rc-text"><strong>Tầng ${c.rowN} &middot; ${rowData.title}</strong> &mdash; đã hoàn tất</span>
+      <span class="rc-meta">${attemptText}</span>
+    `;
+    recap.appendChild(div);
+  });
+
+  if(state.currentRow > 5 || state.finished){
+    document.getElementById('rowplay-question').style.display = 'none';
+    document.getElementById('phase-zones').style.display = 'none';
+    document.getElementById('staging-wrap').style.display = 'none';
+    return;
+  }
+
+  const rowData = ROWS.find(r => r.n === state.currentRow);
+  const q = document.getElementById('rowplay-question');
+  q.style.display = '';
+  q.innerHTML = `
+    <div class="rq-label"><span class="rq-num">${state.currentRow}</span>Tầng ${state.currentRow}/5 &middot; ${rowData.sub}</div>
+    <div class="rq-title">${rowData.title}</div>
+    <div class="rq-hint">${rowData.hint}</div>
+  `;
+
+  const zones = document.getElementById('phase-zones');
+  zones.style.display = '';
+  zones.innerHTML = '';
+  COLS.forEach(c => {
+    const slotId = `${state.currentRow}${c}`;
+    const zone = document.createElement('div');
+    zone.className = 'phase-zone empty';
+    zone.dataset.slot = slotId;
+    zone.innerHTML = `
+      <div class="phase-zone-header">
+        <span class="pzh-num">${COL_META[c].num}</span>
+        <div class="pzh-text">
+          <div class="pzh-label">Giai đoạn ${COL_META[c].num}</div>
+          <div class="pzh-title">${COL_META[c].title}</div>
+        </div>
+      </div>
+      <div class="phase-zone-body"></div>
+    `;
+    attachDropEvents(zone);
+    zones.appendChild(zone);
+  });
+
+  const stagingWrap = document.getElementById('staging-wrap');
+  stagingWrap.style.display = '';
+  const staging = document.getElementById('staging');
+  staging.innerHTML = '';
+  attachDropEvents(staging);
+
+  const rowCards = shuffle(CARDS.filter(c => c.row === state.currentRow));
+  state.rowPlacements = {};
+  state.rowStaging = rowCards.map(c => c.id);
+
+  rowCards.forEach(cd => {
+    const el = createCardEl(cd);
+    staging.appendChild(el);
+  });
+  updateStagingUI();
+}
+
+function updateStagingUI(){
+  const staging = document.getElementById('staging');
+  if(!staging) return;
+  const cardsInStaging = staging.querySelectorAll('.card').length;
+  staging.classList.toggle('empty', cardsInStaging === 0);
+  const countEl = document.getElementById('staging-count');
+  if(countEl) countEl.textContent = cardsInStaging;
+  document.querySelectorAll('.phase-zone').forEach(z => {
+    const hasCard = z.querySelector('.card');
+    z.classList.toggle('empty', !hasCard);
+  });
+}
+
+function buildRandomPlacement(){
+  let placement;
+  let attempts = 0;
+  do {
+    const shuffled = shuffle(CARDS);
+    placement = {};
+    ALL_SLOTS.forEach((slot, idx) => {
+      placement[slot] = shuffled[idx].id;
+    });
+    attempts++;
+    let correctCount = 0;
+    for(const [slot, cardId] of Object.entries(placement)){
+      const card = CARDS.find(c => c.id === cardId);
+      if(card && `${card.row}${card.col}` === slot) correctCount++;
+    }
+    if(correctCount === 0 || attempts > 50) break;
+  } while(true);
+  return placement;
+}
+
+function buildDesktopMatrix(){
+  state.placed = buildRandomPlacement();
+  const boardD = document.getElementById('board-desktop');
+  boardD.innerHTML = '';
+  ROWS.forEach(r => {
+    const rl = document.createElement('div');
+    rl.className = 'row-label';
+    rl.innerHTML = `
+      <div class="r-num">Hàng ${r.n.toString().padStart(2,'0')}</div>
+      <div class="r-title">${r.title}</div>
+      <div class="r-sub">${r.sub}</div>
+    `;
+    boardD.appendChild(rl);
+    COLS.forEach(c => {
+      const slotId = `${r.n}${c}`;
+      const dz = document.createElement('div');
+      dz.className = 'drop-zone';
+      dz.dataset.slot = slotId;
+      attachDropEvents(dz);
+      const cardId = state.placed[slotId];
+      const cardData = CARDS.find(cd => cd.id === cardId);
+      if(cardData){
+        const cardEl = createCardEl(cardData);
+        dz.appendChild(cardEl);
+      }
+      boardD.appendChild(dz);
+    });
+  });
+}
+
+function createCardEl(card){
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.draggable = true;
+  el.dataset.id = card.id;
+  el.innerHTML = card.html;
+  attachDragEvents(el);
+  return el;
+}
+</script>
+
+<script>
+let draggedEl = null;
+let dragGhost = null;
+let dragOffset = {x:0, y:0};
+let isDraggingViaTouch = false;
+let touchStartX = 0, touchStartY = 0;
+let touchCandidateEl = null;
+let longPressTimer = null;
+const LONG_PRESS_MS = 180;
+const MOVE_THRESHOLD = 10;
+const SCROLL_LOCK_X = 8;
+
+function canDrag(el){
+  if(!el) return false;
+  if(state.finished) return false;
+  if(state.mode === 'desktop' && state.locked.has(el.dataset.id)) return false;
+  return true;
+}
+
+function attachDragEvents(el){
+  el.addEventListener('dragstart', onDragStart);
+  el.addEventListener('dragend', onDragEnd);
+  el.addEventListener('touchstart', onTouchStart, {passive:true});
+  el.addEventListener('touchmove', onTouchMove, {passive:false});
+  el.addEventListener('touchend', onTouchEnd);
+  el.addEventListener('touchcancel', onTouchCancel);
+}
+
+function clearDragOverAll(){
+  document.querySelectorAll('.phase-zone.drag-over, .drop-zone.drag-over, .staging.drag-over')
+    .forEach(d => d.classList.remove('drag-over'));
+}
+
+function onDragStart(e){
+  const el = e.currentTarget;
+  if(!canDrag(el)){ e.preventDefault(); return; }
+  draggedEl = el;
+  el.classList.add('dragging');
+  document.body.classList.add('dragging-active');
+  try { e.dataTransfer.effectAllowed = 'move'; } catch(err){}
+  try { e.dataTransfer.setData('text/plain', el.dataset.id); } catch(err){}
+}
+
+function onDragEnd(e){
+  const el = e.currentTarget;
+  el.classList.remove('dragging');
+  document.body.classList.remove('dragging-active');
+  clearDragOverAll();
+  draggedEl = null;
+}
+
+function onTouchStart(e){
+  const el = e.currentTarget;
+  if(!canDrag(el)) return;
+  if(e.touches.length !== 1) return;
+  const t = e.touches[0];
+  touchStartX = t.clientX;
+  touchStartY = t.clientY;
+  touchCandidateEl = el;
+  isDraggingViaTouch = false;
+  clearTimeout(longPressTimer);
+  longPressTimer = setTimeout(() => {
+    if(!touchCandidateEl) return;
+    beginTouchDrag(touchCandidateEl, touchStartX, touchStartY);
+    if(navigator.vibrate) { try { navigator.vibrate(12); } catch(_){} }
+  }, LONG_PRESS_MS);
+  el.classList.add('press-hold');
+}
+
+function beginTouchDrag(el, x, y){
+  if(isDraggingViaTouch) return;
+  isDraggingViaTouch = true;
+  draggedEl = el;
+  const rect = el.getBoundingClientRect();
+  dragOffset.x = x - rect.left;
+  dragOffset.y = y - rect.top;
+  el.classList.add('dragging');
+  el.classList.remove('press-hold');
+  document.body.classList.add('dragging-active');
+  dragGhost = el.cloneNode(true);
+  dragGhost.classList.add('drag-ghost');
+  dragGhost.classList.remove('dragging','press-hold');
+  dragGhost.style.width = rect.width + 'px';
+  dragGhost.style.left = (x - dragOffset.x) + 'px';
+  dragGhost.style.top = (y - dragOffset.y) + 'px';
+  document.body.appendChild(dragGhost);
+}
+
+function onTouchMove(e){
+  if(!touchCandidateEl && !isDraggingViaTouch) return;
+  const t = e.touches[0];
+  const dx = t.clientX - touchStartX;
+  const dy = t.clientY - touchStartY;
+  const absDx = Math.abs(dx);
+  const absDy = Math.abs(dy);
+  if(!isDraggingViaTouch){
+    if(absDy > SCROLL_LOCK_X && absDy > absDx){
+      clearTimeout(longPressTimer);
+      if(touchCandidateEl) touchCandidateEl.classList.remove('press-hold');
+      touchCandidateEl = null;
+      return;
+    }
+    if(absDx > MOVE_THRESHOLD){
+      clearTimeout(longPressTimer);
+      beginTouchDrag(touchCandidateEl, t.clientX, t.clientY);
+    } else {
+      return;
+    }
+  }
+  e.preventDefault();
+  if(dragGhost){
+    dragGhost.style.left = (t.clientX - dragOffset.x) + 'px';
+    dragGhost.style.top = (t.clientY - dragOffset.y) + 'px';
+  }
+  clearDragOverAll();
+  if(dragGhost) dragGhost.style.display = 'none';
+  const under = document.elementFromPoint(t.clientX, t.clientY);
+  if(dragGhost) dragGhost.style.display = '';
+  if(under){
+    const dz = under.closest('.phase-zone, .drop-zone, .staging');
+    if(dz && dz.offsetParent !== null) dz.classList.add('drag-over');
+  }
+}
+
+function onTouchEnd(e){
+  clearTimeout(longPressTimer);
+  if(touchCandidateEl) touchCandidateEl.classList.remove('press-hold');
+  if(!isDraggingViaTouch){
+    touchCandidateEl = null;
+    return;
+  }
+  const el = draggedEl;
+  let targetZone = null;
+  if(dragGhost){
+    const t = (e.changedTouches && e.changedTouches[0]) || null;
+    if(t){
+      dragGhost.style.display = 'none';
+      const under = document.elementFromPoint(t.clientX, t.clientY);
+      dragGhost.style.display = '';
+      if(under){
+        const dz = under.closest('.phase-zone, .drop-zone, .staging');
+        if(dz && dz.offsetParent !== null) targetZone = dz;
+      }
+    }
+    dragGhost.remove();
+    dragGhost = null;
+  }
+  if(el) el.classList.remove('dragging');
+  document.body.classList.remove('dragging-active');
+  clearDragOverAll();
+  if(targetZone && el) handleDrop(targetZone);
+  isDraggingViaTouch = false;
+  draggedEl = null;
+  touchCandidateEl = null;
+}
+
+function onTouchCancel(){
+  clearTimeout(longPressTimer);
+  if(touchCandidateEl) touchCandidateEl.classList.remove('press-hold');
+  if(dragGhost){ dragGhost.remove(); dragGhost = null; }
+  if(draggedEl) draggedEl.classList.remove('dragging');
+  document.body.classList.remove('dragging-active');
+  clearDragOverAll();
+  isDraggingViaTouch = false;
+  draggedEl = null;
+  touchCandidateEl = null;
+}
+
+function attachDropEvents(dz){
+  dz.addEventListener('dragover', e => {
+    if(!draggedEl) return;
+    if(state.mode === 'desktop'){
+      const existingCard = dz.querySelector('.card');
+      if(existingCard && state.locked.has(existingCard.dataset.id)) return;
+    }
+    e.preventDefault();
+    try{ e.dataTransfer.dropEffect = 'move'; }catch(err){}
+    dz.classList.add('drag-over');
+  });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault();
+    dz.classList.remove('drag-over');
+    handleDrop(dz);
+  });
+}
+
+function handleDrop(targetZone){
+  if(!draggedEl) return;
+  if(state.finished) return;
+  if(!canDrag(draggedEl)) return;
+  if(state.mode === 'mobile') handleMobileDrop(targetZone);
+  else handleDesktopDrop(targetZone);
+}
+
+function handleMobileDrop(targetZone){
+  const draggedId = draggedEl.dataset.id;
+  const isPhaseZone = targetZone.classList.contains('phase-zone');
+  const isStaging = targetZone.classList.contains('staging');
+  if(!isPhaseZone && !isStaging) return;
+  const sourceZone = draggedEl.parentElement;
+  if(sourceZone === targetZone) return;
+
+  targetZone.classList.remove('state-correct','state-wrong');
+  sourceZone.classList.remove('state-correct','state-wrong');
+  draggedEl.classList.remove('marked-correct','marked-wrong');
+
+  if(isStaging){
+    targetZone.appendChild(draggedEl);
+    if(sourceZone.classList.contains('phase-zone')){
+      const sourceSlot = sourceZone.dataset.slot;
+      delete state.rowPlacements[sourceSlot];
+    }
+    if(!state.rowStaging.includes(draggedId)) state.rowStaging.push(draggedId);
+  } else {
+    const existingCard = targetZone.querySelector('.card');
+    if(existingCard && existingCard !== draggedEl){
+      existingCard.classList.remove('marked-correct','marked-wrong');
+      const existingId = existingCard.dataset.id;
+      if(sourceZone.classList.contains('phase-zone')){
+        sourceZone.appendChild(existingCard);
+        const sourceSlot = sourceZone.dataset.slot;
+        state.rowPlacements[sourceSlot] = existingId;
+      } else {
+        sourceZone.appendChild(existingCard);
+        for(const [slot, cid] of Object.entries(state.rowPlacements)){
+          if(cid === existingId){ delete state.rowPlacements[slot]; break; }
+        }
+        if(!state.rowStaging.includes(existingId)) state.rowStaging.push(existingId);
+      }
+    } else {
+      if(sourceZone.classList.contains('phase-zone')){
+        const sourceSlot = sourceZone.dataset.slot;
+        delete state.rowPlacements[sourceSlot];
+      }
+    }
+    const targetBody = targetZone.querySelector('.phase-zone-body');
+    if(targetBody) targetBody.innerHTML = '';
+    targetZone.appendChild(draggedEl);
+    const targetSlot = targetZone.dataset.slot;
+    state.rowPlacements[targetSlot] = draggedId;
+    state.rowStaging = state.rowStaging.filter(id => id !== draggedId);
+  }
+
+  draggedEl.classList.remove('in-slot');
+  void draggedEl.offsetWidth;
+  draggedEl.classList.add('in-slot');
+
+  state.swaps++;
+  document.getElementById('swaps').textContent = state.swaps;
+  playSoftClick();
+  updateStagingUI();
+  refreshStatus();
+}
+
+function handleDesktopDrop(targetZone){
+  const targetSlot = targetZone.dataset.slot;
+  if(!targetSlot) return;
+  const draggedId = draggedEl.dataset.id;
+  let sourceSlot = null;
+  for(const s in state.placed){
+    if(state.placed[s] === draggedId){ sourceSlot = s; break; }
+  }
+  if(!sourceSlot || sourceSlot === targetSlot) return;
+  const targetCardId = state.placed[targetSlot];
+  if(targetCardId && state.locked.has(targetCardId)) return;
+  const sourceZone = document.querySelector(`.drop-zone[data-slot="${sourceSlot}"]`);
+  const targetCardEl = targetZone.querySelector('.card');
+  draggedEl.classList.remove('marked-wrong');
+  targetZone.classList.remove('state-wrong','state-correct');
+  if(targetCardEl && !targetCardEl.classList.contains('marked-correct')){
+    targetCardEl.classList.remove('marked-wrong');
+  }
+  sourceZone.classList.remove('state-wrong','state-correct');
+  targetZone.appendChild(draggedEl);
+  if(targetCardEl) sourceZone.appendChild(targetCardEl);
+  state.placed[targetSlot] = draggedId;
+  state.placed[sourceSlot] = targetCardId || null;
+  if(!targetCardId) delete state.placed[sourceSlot];
+  draggedEl.classList.remove('in-slot');
+  void draggedEl.offsetWidth;
+  draggedEl.classList.add('in-slot');
+  if(targetCardEl){
+    targetCardEl.classList.remove('in-slot');
+    void targetCardEl.offsetWidth;
+    targetCardEl.classList.add('in-slot');
+  }
+  state.swaps++;
+  document.getElementById('swaps').textContent = state.swaps;
+  playSoftClick();
+  refreshStatus();
+}
+</script>
+
+<script>
+function confirmAnswers(){
+  if(state.finished) return;
+  if(state.mode === 'mobile') confirmMobileRow();
+  else confirmDesktopMatrix();
+}
+
+function confirmMobileRow(){
+  const filled = Object.keys(state.rowPlacements).length;
+  if(filled < 3) return;
+  state.attempts++;
+  state.rowAttemptCount++;
+  document.getElementById('attempts').textContent = state.attempts;
+
+  let correct = 0, wrong = 0;
+  const wrongCards = [];
+  Object.entries(state.rowPlacements).forEach(([slot, cardId]) => {
+    const card = CARDS.find(c => c.id === cardId);
+    const expectedSlot = `${card.row}${card.col}`;
+    const zone = document.querySelector(`.phase-zone[data-slot="${slot}"]`);
+    const cardEl = zone ? zone.querySelector('.card') : null;
+    if(!zone || !cardEl) return;
+    cardEl.classList.remove('marked-correct','marked-wrong');
+    zone.classList.remove('state-correct','state-wrong');
+    if(expectedSlot === slot){
+      cardEl.classList.add('marked-correct');
+      zone.classList.add('state-correct');
+      correct++;
+    } else {
+      cardEl.classList.add('marked-wrong');
+      zone.classList.add('state-wrong');
+      wrong++;
+      wrongCards.push({cardId, cardEl, zone, slot});
+    }
+  });
+
+  if(correct === 3){
+    playCorrectSound();
+    const attemptsForRow = state.rowAttemptCount;
+    state.completedRows.push({rowN: state.currentRow, attempts: attemptsForRow});
+    state.rowAttemptCount = 0;
+    setTimeout(() => {
+      if(state.currentRow >= 5){
+        state.finished = true;
+        stopTimer();
+        buildMobileRow();
+        updateHUD();
+        setTimeout(() => showWin(), 400);
+        launchConfetti();
+        playWinSound();
+      } else {
+        state.currentRow++;
+        buildMobileRow();
+        updateHUD();
+        refreshStatus();
+        window.scrollTo({top: 0, behavior: 'smooth'});
+      }
+    }, 900);
+  } else {
+    playSoftClick();
+    document.getElementById('fb-correct').textContent = correct;
+    document.getElementById('fb-wrong').textContent = wrong;
+    document.getElementById('fb-attempt').textContent = state.rowAttemptCount;
+    const titleEl = document.getElementById('fb-title');
+    if(correct === 2) titleEl.innerHTML = 'Sắp rồi!<br/><em>Chỉ còn 1 thẻ sai thôi</em>';
+    else if(correct === 1) titleEl.innerHTML = 'Gần đúng<br/><em>Thử lại nhé</em>';
+    else titleEl.innerHTML = 'Cùng xem lại<br/><em>Các thẻ đều chưa đúng</em>';
+    setTimeout(() => {
+      document.getElementById('feedback').classList.add('show');
+    }, 700);
+    setTimeout(() => {
+      const staging = document.getElementById('staging');
+      wrongCards.forEach(({cardId, cardEl, zone, slot}) => {
+        cardEl.classList.remove('marked-wrong');
+        zone.classList.remove('state-wrong');
+        delete state.rowPlacements[slot];
+        state.rowStaging.push(cardId);
+        staging.appendChild(cardEl);
+      });
+      updateStagingUI();
+      refreshStatus();
+    }, 1400);
+  }
+  refreshStatus();
+}
+
+function confirmDesktopMatrix(){
+  state.attempts++;
+  document.getElementById('attempts').textContent = state.attempts;
+  let correctCount = 0, wrongCount = 0;
+  Object.entries(state.placed).forEach(([slot, cardId]) => {
+    if(!cardId) return;
+    const card = CARDS.find(c => c.id === cardId);
+    if(!card) return;
+    const expectedSlot = `${card.row}${card.col}`;
+    const dz = document.querySelector(`.drop-zone[data-slot="${slot}"]`);
+    const cardEl = document.querySelector(`.card[data-id="${cardId}"]`);
+    if(!dz || !cardEl) return;
+    cardEl.classList.remove('marked-correct','marked-wrong');
+    dz.classList.remove('state-correct','state-wrong');
+    if(expectedSlot === slot){
+      cardEl.classList.add('marked-correct');
+      dz.classList.add('state-correct');
+      state.locked.add(cardId);
+      cardEl.draggable = false;
+      correctCount++;
+    } else {
+      cardEl.classList.add('marked-wrong');
+      dz.classList.add('state-wrong');
+      wrongCount++;
+    }
+  });
+  updateHUD();
+  if(correctCount === 15){
+    state.finished = true;
+    stopTimer();
+    setTimeout(() => showWin(), 700);
+    playWinSound();
+    sparkleBoard();
+  } else {
+    document.getElementById('fb-correct').textContent = correctCount;
+    document.getElementById('fb-wrong').textContent = wrongCount;
+    document.getElementById('fb-attempt').textContent = state.attempts;
+    const titleEl = document.getElementById('fb-title');
+    if(correctCount >= 12) titleEl.innerHTML = 'Sắp xong rồi!<br/><em>Chỉ còn vài thẻ</em>';
+    else if(correctCount >= 8) titleEl.innerHTML = 'Rất tốt!<br/><em>Cùng xem lại nhé</em>';
+    else if(correctCount >= 4) titleEl.innerHTML = 'Đã có tiến bộ<br/><em>Tiếp tục điều chỉnh</em>';
+    else titleEl.innerHTML = 'Cùng xem lại nhé<br/><em>Bạn sẽ làm tốt hơn</em>';
+    playCorrectSound();
+    setTimeout(() => {
+      document.getElementById('feedback').classList.add('show');
+    }, 600);
+  }
+  refreshStatus();
+}
+
+function closeFeedback(){
+  document.getElementById('feedback').classList.remove('show');
+  refreshStatus();
+}
+
+function refreshStatus(){
+  const btn = document.getElementById('confirm-btn');
+  const statusIcon = document.getElementById('status-icon');
+  const statusText = document.getElementById('status-text');
+  if(state.finished){
+    btn.disabled = true;
+    btn.classList.remove('pulse');
+    btn.innerHTML = '<span>&#10003;</span>Đã hoàn thành';
+    statusIcon.textContent = '✓';
+    statusIcon.style.background = 'var(--success-soft)';
+    statusIcon.style.color = 'var(--success)';
+    statusText.innerHTML = '<strong>Xuất sắc!</strong> Bạn đã hoàn tất cả 5 tầng.';
+    return;
+  }
+  if(state.mode === 'mobile'){
+    const filled = Object.keys(state.rowPlacements).length;
+    const ready = filled === 3;
+    btn.disabled = !ready;
+    btn.classList.toggle('pulse', ready);
+    btn.innerHTML = '<span>&#10003;</span>Xác nhận';
+    if(ready){
+      statusIcon.textContent = '✓';
+      statusIcon.style.background = 'var(--success-soft)';
+      statusIcon.style.color = 'var(--success)';
+      statusText.innerHTML = `<strong>Đã đủ 3 thẻ.</strong> Nhấn <strong style="color:var(--red)">XÁC NHẬN</strong> để kiểm tra.`;
+    } else {
+      statusIcon.textContent = `${filled}`;
+      statusIcon.style.background = 'var(--red-soft)';
+      statusIcon.style.color = 'var(--red)';
+      statusText.innerHTML = `<strong>Còn ${3 - filled} thẻ</strong> cần kéo vào giai đoạn phù hợp.`;
+    }
+  } else {
+    const allLocked = state.locked.size === 15;
+    btn.disabled = allLocked;
+    btn.classList.toggle('pulse', !allLocked);
+    btn.innerHTML = allLocked ? '<span>&#10003;</span>Đã hoàn thành' : '<span>&#10003;</span>Xác nhận đáp án';
+    if(state.attempts > 0){
+      const wrongCount = 15 - state.locked.size;
+      statusIcon.textContent = state.locked.size;
+      statusIcon.style.background = 'var(--success-soft)';
+      statusIcon.style.color = 'var(--success)';
+      statusText.innerHTML = `Đã khoá <strong>${state.locked.size}</strong>/15. Còn <strong style="color:var(--red)">${wrongCount} thẻ</strong> cần đổi.`;
+    } else {
+      statusIcon.textContent = '↔';
+      statusIcon.style.background = 'var(--red-soft)';
+      statusIcon.style.color = 'var(--red)';
+      statusText.innerHTML = '<strong>Kéo thẻ và thả lên thẻ khác</strong> để hoán đổi. Khi đã đúng, nhấn <strong style="color:var(--red)">XÁC NHẬN</strong>.';
+    }
+  }
+}
+
+function updateHUD(){
+  const progressItem = document.getElementById('hud-progress');
+  const labelEl = progressItem.querySelector('.label');
+  const unitEl = progressItem.querySelector('.unit');
+  if(state.mode === 'mobile'){
+    if(labelEl) labelEl.textContent = '✓ Tầng hoàn tất';
+    document.getElementById('locked').textContent = state.completedRows.length;
+    if(unitEl) unitEl.textContent = '/ 5';
+  } else {
+    if(labelEl) labelEl.textContent = '✓ Đã khoá';
+    document.getElementById('locked').textContent = state.locked.size;
+    if(unitEl) unitEl.textContent = '/ 15';
+  }
+  document.getElementById('swaps').textContent = state.swaps;
+}
+
+function startTimer(){
+  state.startTime = Date.now();
+  state.timerInterval = setInterval(() => {
+    state.elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+    document.getElementById('timer').textContent = formatTime(state.elapsed);
+  }, 500);
+}
+function stopTimer(){ clearInterval(state.timerInterval); }
+function formatTime(s){
+  const m = Math.floor(s/60).toString().padStart(2,'0');
+  const sec = (s%60).toString().padStart(2,'0');
+  return `${m}:${sec}`;
+}
+
+function calculateScore(){
+  const base = 10000;
+  const timePenalty = state.elapsed * 12;
+  const minA = state.mode === 'mobile' ? 5 : 1;
+  const attemptPenalty = Math.max(0, state.attempts - minA) * 350;
+  const swapPenalty = Math.max(0, state.swaps - (state.mode === 'mobile' ? 15 : 20)) * 20;
+  return Math.max(200, base - timePenalty - attemptPenalty - swapPenalty);
+}
+
+function getRank(attempts, time){
+  const minAttempts = state.mode === 'mobile' ? 5 : 1;
+  if(attempts === minAttempts && time < 90) return {
+    rank:'Bậc thầy Funnel',
+    msg:'Hoàn hảo! Bạn nắm vững phễu tuyển dụng như một chuyên gia thực thụ.'
+  };
+  if(attempts === minAttempts && time < 180) return {
+    rank:'Chuyên gia xuất sắc',
+    msg:'Xuất sắc! Đúng hết ở lần thử đầu tiên của mỗi tầng.'
+  };
+  if(attempts <= minAttempts + 2 && time < 240) return {
+    rank:'Chuyên viên giỏi',
+    msg:'Rất tốt! Bạn đã nhanh chóng nhận ra logic của phễu tuyển dụng.'
+  };
+  if(attempts <= minAttempts + 4) return {
+    rank:'Học viên triển vọng',
+    msg:'Tốt lắm! Thử lại để giảm số lần xác nhận nhé.'
+  };
+  return {
+    rank:'Đã hoàn thành',
+    msg:'Chúc mừng bạn đã hoàn thành! Ôn lại các giai đoạn và thử lại nhanh hơn nhé.'
+  };
+}
+
+function showWin(){
+  const score = calculateScore();
+  const {rank, msg} = getRank(state.attempts, state.elapsed);
+  document.getElementById('r-time').textContent = formatTime(state.elapsed);
+  document.getElementById('r-attempts').textContent = state.attempts;
+  document.getElementById('r-score').textContent = score.toLocaleString('vi-VN');
+  document.getElementById('r-rank').textContent = rank;
+  document.getElementById('r-msg').textContent = msg;
+  document.getElementById('result').classList.add('show');
+  launchConfetti();
+}
+function closeResult(){ document.getElementById('result').classList.remove('show'); }
+</script>
+
+<script>
+function sparkleBoard(){
+  const board = document.querySelector('.board-shell');
+  if(!board) return;
+  const rect = board.getBoundingClientRect();
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const particles = [];
+  const colors = ['#D92332','#D9A441','#1E8E56','#EF3B4A'];
+  for(let i=0;i<50;i++){
+    particles.push({
+      x: rect.left + Math.random()*rect.width,
+      y: rect.top + Math.random()*rect.height,
+      vx: (Math.random()-0.5)*4,
+      vy: (Math.random()-0.5)*4 - 2,
+      size: Math.random()*4+2,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      life: 45,
+    });
+  }
+  animateParticles(particles, ctx, canvas, false);
+}
+
+function launchConfetti(){
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const particles = [];
+  const colors = ['#D92332','#D9A441','#1E8E56','#B31826','#EF3B4A','#FFF9F2'];
+  for(let i=0;i<200;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: -20 - Math.random()*canvas.height*0.5,
+      vx: (Math.random()-0.5)*3,
+      vy: Math.random()*3+2,
+      size: Math.random()*8+4,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      life: 240,
+      rot: Math.random()*Math.PI*2,
+      vrot: (Math.random()-0.5)*0.2,
+    });
+  }
+  animateParticles(particles, ctx, canvas, true);
+}
+
+function animateParticles(particles, ctx, canvas, isConfetti){
+  let alive = true;
+  const tick = () => {
+    alive = false;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p => {
+      if(p.life > 0){
+        alive = true;
+        p.life--;
+        p.x += p.vx;
+        p.y += p.vy;
+        if(isConfetti){ p.vy += 0.08; p.rot += p.vrot; }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        if(isConfetti){
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.5);
+        } else {
+          ctx.globalAlpha = Math.min(1, p.life/30);
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(0,0,p.size,0,Math.PI*2);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+    });
+    if(alive) requestAnimationFrame(tick);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  };
+  tick();
+}
+
+let audioCtx = null;
+function getAudio(){
+  if(!audioCtx){
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+    catch(e){ return null; }
+  }
+  return audioCtx;
+}
+function playSoftClick(){
+  const ctx = getAudio(); if(!ctx) return;
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.type = 'sine';
+  osc.frequency.value = 620;
+  gain.gain.setValueAtTime(0.05, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start();
+  osc.stop(ctx.currentTime + 0.08);
+}
+function playCorrectSound(){
+  const ctx = getAudio(); if(!ctx) return;
+  [523.25, 659.25, 783.99].forEach((f, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.value = f;
+    gain.gain.setValueAtTime(0, ctx.currentTime + i*0.06);
+    gain.gain.linearRampToValueAtTime(0.07, ctx.currentTime + i*0.06 + 0.02);
+    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + i*0.06 + 0.18);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(ctx.currentTime + i*0.06);
+    osc.stop(ctx.currentTime + i*0.06 + 0.2);
+  });
+}
+function playWinSound(){
+  const ctx = getAudio(); if(!ctx) return;
+  const notes = [523.25, 659.25, 783.99, 1046.50];
+  notes.forEach((f, i) => {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.value = f;
+    gain.gain.setValueAtTime(0, ctx.currentTime + i*0.1);
+    gain.gain.linearRampToValueAtTime(0.1, ctx.currentTime + i*0.1 + 0.03);
+    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + i*0.1 + 0.35);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(ctx.currentTime + i*0.1);
+    osc.stop(ctx.currentTime + i*0.1 + 0.4);
+  });
+}
+
+function startGame(){
+  document.getElementById('intro').classList.remove('show');
+  setTimeout(() => document.getElementById('intro').style.display = 'none', 400);
+  getAudio();
+  if(!state.startTime) startTimer();
+}
+
+function resetGame(){
+  stopTimer();
+  state = {
+    mode: isMobileView() ? 'mobile' : 'desktop',
+    currentRow: 1,
+    rowPlacements: {},
+    rowStaging: [],
+    completedRows: [],
+    rowAttemptCount: 0,
+    placed: {},
+    locked: new Set(),
+    attempts: 0,
+    swaps: 0,
+    startTime: null,
+    timerInterval: null,
+    elapsed: 0,
+    finished: false,
+  };
+  document.getElementById('timer').textContent = '00:00';
+  document.getElementById('locked').textContent = '0';
+  document.getElementById('swaps').textContent = '0';
+  document.getElementById('attempts').textContent = '0';
+  document.getElementById('result').classList.remove('show');
+  document.getElementById('feedback').classList.remove('show');
+  buildBoard();
+}
+
+buildBoard();
+
+let lastMode = state.mode;
+window.addEventListener('resize', () => {
+  const newMode = isMobileView() ? 'mobile' : 'desktop';
+  if(newMode !== lastMode){
+    lastMode = newMode;
+    resetGame();
+  }
+});
+
+document.addEventListener('touchend', e => {
+  const btn = e.target.closest('.btn');
+  if(btn && !btn.disabled){
+    e.preventDefault();
+    btn.click();
+  }
+}, {passive: false});
+</script>
+
+</body>
+</html>
